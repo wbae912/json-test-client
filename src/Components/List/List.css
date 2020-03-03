@@ -1,0 +1,10 @@
+.item-ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.li-checked {
+  color: grey;
+  text-decoration: line-through;
+}
