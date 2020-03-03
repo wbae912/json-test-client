@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import List from '../List/List';
+import Form from '../Form/Form';
 
 export default class Example extends Component {
   constructor(props) {
     super(props)
   
     this.state = {
-       lists: []
+       lists: [],
+       yesClicked: false,
     }
   }
 
@@ -24,6 +26,29 @@ export default class Example extends Component {
         })
       })
   }
+
+  toggleClick = () => {
+    this.setState({
+      yesClicked: true
+    })
+  }
+
+  cancelClicked = () => {
+    this.setState({
+      yesClicked: false
+    })
+  }
+
+  renderForm = () => {
+    if(this.state.yesClicked) {
+      return (
+        <>
+          <Form />
+          <button onClick={this.cancelClicked}>Cancel</button>
+        </>
+     )
+    }
+  }
   
   render() {
     return (
@@ -34,6 +59,11 @@ export default class Example extends Component {
             list={list}
           />
         )}
+
+        <h3>Do you want to add a list?</h3>
+        {!this.state.yesClicked && <button onClick={this.toggleClick}>Yes</button>}
+
+        {this.renderForm()}
       </div>
     )
   }
